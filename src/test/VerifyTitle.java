@@ -7,12 +7,12 @@ import static com.codeborne.selenide.Selenide.open;
 
 
 public class VerifyTitle {
-    private GoogleMainPage page = new GoogleMainPage();
-    private GoogleSearchPage searchPage = new GoogleSearchPage();
-    private FirstSiteOfSerchResult firstSite = new FirstSiteOfSerchResult();
-
     private String url = "http://google.com";
     private String searchRequest = "automation";
+
+    private GoogleMainPage mainPageGoogle = new GoogleMainPage();
+    private GoogleSearchPage searchPage = new GoogleSearchPage();
+    private FirstSiteOfSerchResult firstSite = new FirstSiteOfSerchResult();
 
     @BeforeTest
     public void pageOpen(){
@@ -20,11 +20,10 @@ public class VerifyTitle {
     }
 
     @Test
-    public void checkTitleOfFirstResult() throws InterruptedException {
-        page.setText(searchRequest).pressEnter();
+    public void checkTitleOfFirstResult() {
+        mainPageGoogle.setText(searchRequest).pressEnter();
         searchPage.getResultList().get(0).shouldBe(visible).$(By.tagName("h3")).click();
         firstSite.getTitle().has(text(searchRequest));
-
     }
 
 }
