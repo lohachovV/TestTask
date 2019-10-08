@@ -1,3 +1,5 @@
+package sites;
+
 import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.By;
 
@@ -9,4 +11,5 @@ public class FirstSiteOfSerchResult {
     public SelenideElement getTitleElement (){
         return $(By.tagName("title"));
     }
+
 }

@@ -1,3 +1,4 @@
+import googlePages.GoogleSearchPage;
 import org.testng.Assert;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
@@ -5,11 +6,6 @@ import org.testng.annotations.Test;
 import static com.codeborne.selenide.Selenide.open;
 
 public class SearchDomain extends BaseTest{
-
-    @BeforeTest
-    public void pageOpen(){
-        open(url);
-    }
 
     @Test
     public void findOnSearchList () {

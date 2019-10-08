@@ -1,8 +1,11 @@
+package googlePages;
+
 import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.By;
 import java.util.List;
 import java.util.logging.Logger;
 
+import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.*;
 
 
@@ -11,13 +14,13 @@ public class GoogleSearchPage {
 
     private GoogleMainPage mainPageGoogle = new GoogleMainPage();
 
-    public List<SelenideElement> getResultList (){
+    private List<SelenideElement> getResultList (){
         return $$(("div[class=g]"));
     }
-    public SelenideElement buttonNext (){
+    private SelenideElement buttonNext (){
         return $(By.id("pnnext"));
     }
-    public SelenideElement findLink (SelenideElement searchResult){
+    private SelenideElement findLink (SelenideElement searchResult){
         return searchResult.$(By.tagName("cite"));
     }
 
@@ -46,6 +49,11 @@ public class GoogleSearchPage {
             log.info("this pages hasn't address that you're looking for");
         }
         return result;
+    }
+
+    public void clickOnFirstLink(String searchRequest){
+        mainPageGoogle.setText(searchRequest);
+        getResultList().get(0).shouldBe(visible).$(By.tagName("h3")).click();
     }
 
 
